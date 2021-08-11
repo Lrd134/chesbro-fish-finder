@@ -13,6 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-heroku'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 
 
