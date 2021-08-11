@@ -9,7 +9,10 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if session[:omniauth_data].nil?
+      @user = User.new
+    else
+      
   end
   def edit
   end
