@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     if session[:omniauth_data].nil?
       @user = User.new
     else
-      
+      byebug
+    end
   end
   def edit
   end

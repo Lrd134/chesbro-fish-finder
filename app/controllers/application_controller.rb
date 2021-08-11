@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
   def home
-    render :home
+    render "application/home"
   end
 end
