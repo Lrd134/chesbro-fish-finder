@@ -11,6 +11,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
