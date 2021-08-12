@@ -1,6 +1,7 @@
 <h1>New User</h1>
 
 <%= render 'form', user: @user %>
-<p>Try <%= link_to 'Signing in with the developer strategy', '/auth/developer', method: :post %>.</p>
+<p>Try <%= link_to 'Signing in with the facebook strategy', '/auth/facebook', method: :post %>.</p>
+<p>Try <%= link_to 'Signing in with the heroku strategy', '/auth/heroku', method: :post %>.</p>
 <p>Try <%= link_to 'Signing in with the GitHub strategy', '/auth/github', method: :post %>.</p>
 <%= link_to 'Back', users_path %>
