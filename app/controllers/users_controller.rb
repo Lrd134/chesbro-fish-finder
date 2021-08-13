@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    set_user
   end
 
   def new
