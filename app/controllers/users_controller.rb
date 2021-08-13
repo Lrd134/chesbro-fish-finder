@@ -1,21 +1,15 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :current_user, only: %i[ show edit update destroy ]
 
   def index
     @users = User.all
   end
 
   def show
-    set_user
+    
   end
 
-  def new
-    if session[:omniauth_data].nil?
-      @user = User.new
-    else
-      byebug
-    end
-  end
+
   def edit
   end
 
@@ -26,14 +20,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-
+    @user.destroy
   end
 
-  private
-    def set_user
-      @user = User.find(params[:id])
-    end
-    def user_params
-      params.fetch(:user, {})
-    end
+
 end
