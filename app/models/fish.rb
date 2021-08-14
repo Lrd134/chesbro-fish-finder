@@ -1,0 +1,3 @@
+class Fish < ApplicationRecord
+
+end
