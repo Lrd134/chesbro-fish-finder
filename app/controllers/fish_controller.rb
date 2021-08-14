@@ -7,6 +7,7 @@ class FishController < ApplicationController
   
   def new
     @fish = Fish.new
+    @user = current_user
   end
   
   def create
@@ -23,7 +24,7 @@ class FishController < ApplicationController
   def destroy
     byebug
   end
-  
+
   private
     
     def set_fish
