@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get '/fish/:fish_slug/:cat_slug', to: 'fish#show', as: 'fish'
+  scope '/fish' do
+    get '/categories', to: 'categories#index', as: 'categories'
+    get '/:cat_slug', to: 'categories#show', as: 'category'
+    get '/:fish_slug/:cat_slug', to: 'fish#show', as: 'fish'
+  end
   resources :users, except: [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   match '/auth/:provider/callback', to: 'sessions#omniauth', via: [:get, :post]
