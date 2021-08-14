@@ -5,6 +5,6 @@ class CategoriesController < ApplicationController
   end
   def show
     @category = Category.find_by_slug(params[:slug])
-    @category.nil? ridirect_to(categories)
+    @category.nil? redirect_to(categories) : render :show
   end
 end
