@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  resources :fish, only: [ :new, :create ]
   scope '/fish' do
+    get '/:fish_slug/update', to: 'fish#edit', as: 'edit_fish'
+    post '/:fish_slug', to: 'fish#update'
     get '/categories', to: 'categories#index', as: 'categories'
     get '/:cat_slug', to: 'categories#show', as: 'category'
     get '/:fish_slug/:cat_slug', to: 'fish#show', as: 'fish'
