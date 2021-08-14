@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :categories
   get '/fish/:fish_slug/:cat_slug', to: 'fish#show', as: 'fish'
   resources :users, except: [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
