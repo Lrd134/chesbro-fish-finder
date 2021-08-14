@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+      .profiler-results.profiler-bottom.profiler-right .profiler-button,
+      .profiler-results.profiler-bottom.profiler-right .profiler-controls,
+      .profiler-result .profiler-number,
+      .profiler-button .profiler-totals,
+      .profiler-reqs, .profiler-number,
+      .profiler-unit, .profiler-result {
+        display: none;
+        z-index: none;
+        color: #fff0;
+        background-color: #fff0;
+        border-color: #fff0;
+      }
+      
