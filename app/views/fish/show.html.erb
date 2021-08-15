@@ -1,4 +1,2 @@
 <p id="notice"><%= notice %></p>
-<%= @fish.title %>
-<%= @fish.content %>
-<%= image_tag @fish.fish_image %>
+<%= render 'fish', locals: { fish: @fish, user: @user } %>
