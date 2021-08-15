@@ -3,6 +3,7 @@ class Fish < ApplicationRecord
   after_validation :capitalize_title, :update_category
   before_create :force_unsolved
   validates :title, presence: true
+  has_one_attached :fish_image
 
   def slug
     self.title = self.title.split(" ").map { | word | word.downcase }.join("-")
