@@ -1,12 +1,7 @@
 class User < ApplicationRecord
+  has_many :fish
   has_secure_password
-  def display
-    self.username
-  end
 
-  def display_google_account
-      "#{self.email} #{self.provider.split("_").map{ | w | w.capitalize }.join("_")}"
-  end
   def self.from_omniauth(response)
     @user = User.find_by(uid: response['uid'])
     if @user.nil?
