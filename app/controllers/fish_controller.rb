@@ -1,5 +1,6 @@
 class FishController < ApplicationController
   before_action :set_fish, only: %i[ show edit update destroy ]
+  before_action :set_user, only: [ :new ]
   
   def index
     @fish = Fish.all
@@ -29,6 +30,9 @@ class FishController < ApplicationController
     
     def set_fish
       @fish = Fish.find_by_slug(params[:fish_slug])
+    end
+    def set_user
+      @user = current_user
     end
 
     def fish_params

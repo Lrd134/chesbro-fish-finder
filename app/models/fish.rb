@@ -1,5 +1,6 @@
 class Fish < ApplicationRecord
-  belongs_to :category, :user
+  belongs_to :category
+  belongs_to :user
   after_validation :capitalize_title, :update_category
   before_create :force_unsolved
   validates :title, presence: true
@@ -14,7 +15,7 @@ class Fish < ApplicationRecord
   end
 
   def update_category
-    self.solved == 1 ? self.category=(Category.find_by_slug('identified')) : self.category(Category.find_by_slug('unidentified'))
+    self.solved == 1 ? self.category=(Category.find_by_slug('identified')) : self.category=(Category.find_by_slug('unidentified'))
   end
   def force_unsolved
     self.solved = 0

@@ -1,5 +1,5 @@
-<%= @user.username %>
+
 <%= @fish.title %>
-<%= @category.name.capitalize%>
+<%= @fish.category.name.capitalize%>
 <%= @fish.content %>
 <%= @fish.fish_image.attached? ? image_tag(@fish.fish_image) : "No Image Provided" %>
