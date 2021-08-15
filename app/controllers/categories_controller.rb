@@ -5,6 +5,6 @@ class CategoriesController < ApplicationController
   end
   def show
     @category = Category.find_by_slug(params[:cat_slug])
-    @category.nil? ? redirect_to(categories_path) : render(:show) unless params[:cat_slug] == "new" || params[:cat_slug] == "edit"
+    @category.nil? ? redirect_to(categories_path) : render(:show)
   end
 end

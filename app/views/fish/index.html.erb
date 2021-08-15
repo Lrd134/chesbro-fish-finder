@@ -12,9 +12,8 @@
   <tbody>
     <% @fish.each do |fish| %>
       <tr>
-        <td><%= link_to 'Show', fish %></td>
-        <td><%= link_to 'Edit', edit_fish_path(fish) %></td>
-        <td><%= link_to 'Destroy', fish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=fish.title%></td>
+        <td><%=fish.category.name.capitalize%></td>
       </tr>
     <% end %>
   </tbody>

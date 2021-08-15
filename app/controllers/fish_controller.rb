@@ -16,6 +16,7 @@ class FishController < ApplicationController
   end
 
   def edit
+    @fish.nil? redirect_to(fish_index_path)
   end
 
   def update
@@ -31,6 +32,7 @@ class FishController < ApplicationController
     def set_fish
       @fish = Fish.find_by_slug(params[:fish_slug])
     end
+
     def set_user
       @user = current_user
     end
