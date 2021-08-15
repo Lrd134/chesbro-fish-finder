@@ -1,8 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% if @user.uid %>
-  <%=@user.display_google_account %>
-<% else %>
-  <%= @user.display %>
-<% end %>
+
+<%= @user.username %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

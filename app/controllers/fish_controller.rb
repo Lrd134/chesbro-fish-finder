@@ -1,7 +1,6 @@
 class FishController < ApplicationController
-  before_action :set_fish, only: %i[ show edit update destroy ]
-  before_action :set_user, only: [ :new ]
-  
+  before_action :set_fish, :set_user, only: %i[ show edit update destroy ]
+
   def index
     @fish = Fish.all
   end
@@ -16,7 +15,8 @@ class FishController < ApplicationController
   end
 
   def edit
-    @fish.nil? redirect_to(fish_index_path)
+    @fish.nil? ? redirect_to(fish_index_path) : render(:edit)
+
   end
 
   def update
