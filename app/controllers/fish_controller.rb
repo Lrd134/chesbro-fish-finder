@@ -11,8 +11,8 @@ class FishController < ApplicationController
   end
   
   def create
-
-    byebug
+    @fish = Fish.create(fish_params)
+    redirect_to fish_path(@fish.slug, @fish.category_slug)
   end
 
   def edit
@@ -36,6 +36,6 @@ class FishController < ApplicationController
     end
 
     def fish_params
-      params.require(:fish).permit(:content, :title, :user_id)
+      params.require(:fish).permit(:fish_image, :content, :title, :user_id)
     end
 end

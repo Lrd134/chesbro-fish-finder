@@ -14,13 +14,15 @@ class Fish < ApplicationRecord
   end
 
   def update_category
-    self.solved == 1 ? self.category_id = 1 : self.category_id = 2
+    self.solved == 1 ? self.category_id=(Category.find_by_slug('identified').id) : self.category_id=(Category.find_by_slug('unidentified').id)
   end
   def force_unsolved
     self.solved = 0
-    self.category_id = 2
+    self.category_id = Category.find_by_slug('unidentified').id
   end
-
+  def category_slug
+    Category.find(self.category_id).slug
+  end
   def self.deslugify(slug)
     slug.split("-").map { | word | word.capitalize }.join(" ")
   end
