@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get '/edit', to: 'fish#edit', as: 'edit_fish'
         get '/', to: 'fish#show', as: 'fish'
         post '/delete', to: 'fish#destroy', as: 'delete_fish'
+        resources :comments
       end
     end
     get '/', to: 'fish#index', as: 'fish_index'
