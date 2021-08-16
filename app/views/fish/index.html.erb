@@ -12,8 +12,9 @@
   <tbody>
     <% @fish.each do |fish| %>
       <tr>
-        <td><%=fish.title%></td>
+        <td><%=link_to fish.title, fish_path(fish.slug, fish.category.slug)%></td>
         <td><%=fish.category.name.capitalize%></td>
+        <td><%=link_to "Edit #{fish.title}", edit_fish_path(fish.slug, fish.category.slug)%></td>
       </tr>
     <% end %>
   </tbody>

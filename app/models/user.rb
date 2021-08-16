@@ -10,4 +10,7 @@ class User < ApplicationRecord
       @user
     end
   end
+  def admin?
+    !self.admin
+  end
 end

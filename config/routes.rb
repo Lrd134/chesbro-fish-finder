@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   scope '/fish' do
     get '/', to: 'fish#index', as: 'fish_index'
+    patch '/:id/:cat_slug', to: 'fish#update'
     get '/:fish_slug/:cat_slug/edit', to: 'fish#edit', as: 'edit_fish'
     post '/', to: 'fish#create'
-    post '/:fish_slug', to: 'fish#update'
     get '/categories', to: 'categories#index', as: 'categories'
     get '/:cat_slug', to: 'categories#show', as: 'category'
     get '/:fish_slug/:cat_slug', to: 'fish#show', as: 'fish'
