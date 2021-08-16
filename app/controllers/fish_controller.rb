@@ -15,18 +15,25 @@ class FishController < ApplicationController
   end
 
   def edit
-    @fish.nil? ? redirect_to(fish_index_path) : render(:edit)
+    if !allowed_to_modify?(@fish) && @fish.nil?
+      redirect_to fish_index_path
+    end
   end
 
   def update
     @fish = Fish.find(params[:id])
-    if @fish.user_id == current_user.id || current_user.admin?
+    if allowed_to_modify?(@fish)
       @fish.update(fish_params)
+    else
+      redirect_to fish_index_path
+    end
     redirect_to fish_path @fish.slug, @fish.category.slug
   end
   
   def destroy
-    
+    allowed_to_modify?(@fish) ? @fish.destroy : redirect_to(fish_index_path)
+    # redirect_to users_fish_path
+    redirect_to fish_index_path
   end
 
   private
