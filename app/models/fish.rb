@@ -2,6 +2,8 @@ class Fish < ApplicationRecord
   has_many :comments
   belongs_to :category
   belongs_to :user
+  validates :title, exclusion: { in: %w( - ? _ + - . , ; : ' " [ ] { } \ | = ! @ # $ % ^ & * ),
+    message: "%{value} is reserved." }
   after_validation :capitalize_title, :update_category
   before_create :force_unsolved
   validates :title, presence: true

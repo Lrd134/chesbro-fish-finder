@@ -1,5 +1,6 @@
 class FishController < ApplicationController
   before_action :set_fish, :set_user, only: %i[ show edit destroy ]
+  before_action :check_session_for_user, only: %i[ new create destroy update edit ]
 
   def index
     @fish = Fish.all
@@ -45,7 +46,9 @@ class FishController < ApplicationController
     def set_user
       @user = current_user
     end
-
+    def check_session_for_user
+      current_user.nil? ? redirect_to(:fish_index, notice: "Not Logged In") : nil
+    end
     def fish_params
       params.require(:fish).permit(:fish_image, :content, :title, :user_id)
     end
