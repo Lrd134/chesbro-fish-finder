@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  has_many :comments
   has_many :fish
   has_secure_password
+  before_create :set_admin
+
 
   def self.from_omniauth(response)
     @user = User.find_by(uid: response['uid'])
@@ -10,7 +13,18 @@ class User < ApplicationRecord
       @user
     end
   end
+
+  def self.seed_by_hash(user_hash)
+    @user = User.find_by(username: user_hash[:username])
+    @user.nil? ? User.create(user_hash) : @user
+  end
+
+  def set_admin
+    self.admin.nil? ? self.admin=(0) : self.admin=(self.admin)
+  end
+
   def admin?
     !self.admin
   end
+
 end

@@ -1,4 +1,5 @@
 class Fish < ApplicationRecord
+  has_many :comments
   belongs_to :category
   belongs_to :user
   after_validation :capitalize_title, :update_category
