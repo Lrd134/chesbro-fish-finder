@@ -18,4 +18,4 @@ end
 @angelfish = Fish.find_or_create_by(title: "fish from carribean", content: "I saw this fish while scuba diving in the Carribean, I have no idea what it could be at all.", fish_image: seed_image('angelfish'), user: @larld)
 @clownfish = Fish.find_or_create_by(title: "possible clownfish", content: "I almost know for a fact this is a clownfish, I just would like an expert to confirm this for me.", fish_image: seed_image('clownfish'), user: @kooldude)
 @porgy = Fish.find_or_create_by(title: "caught while fishing", content: "This was caught one day while fishing off the coast of Mass. U.S.", fish_image: seed_image('porgy'), user: @avery)
-
+Comment.find_or_create_by(body: "")
