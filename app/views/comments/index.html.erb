@@ -1,0 +1,5 @@
+<% @comments.each do | comment | %>
+<ul>
+  <li><%=link_to "Comment ##{comment.id} by #{comment.user.username}", comments_path(comment.fish.slug, comment.fish.category.slug, comment.id)%></li>
+</ul>
+<% end %>
