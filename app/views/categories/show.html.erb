@@ -1,1 +1,5 @@
-<%= @category.name %>
+<ul>
+  <% @category.fish.each do | one_fish | %>
+    <li><%= link_to one_fish.title, fish_path(one_fish.slug, one_fish.category.slug)%></li>
+  <% end %>
+</ul>

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :comments
   has_many :fish
+  has_many :categories, through: :fish
   has_secure_password
   before_create :set_admin
 
