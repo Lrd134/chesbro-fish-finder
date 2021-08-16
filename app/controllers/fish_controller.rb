@@ -15,14 +15,14 @@ class FishController < ApplicationController
   end
 
   def edit
-    if !allowed_to_modify?(@fish) && @fish.nil?
+    if !is_user_allowed_to_modify?(@fish) && @fish.nil?
       redirect_to fish_index_path
     end
   end
 
   def update
     @fish = Fish.find(params[:id])
-    if allowed_to_modify?(@fish)
+    if is_user_allowed_to_modify?(@fish)
       @fish.update(fish_params)
     else
       redirect_to fish_index_path
@@ -31,7 +31,7 @@ class FishController < ApplicationController
   end
   
   def destroy
-    allowed_to_modify?(@fish) ? @fish.destroy : redirect_to(fish_index_path)
+    is_user_allowed_to_modify?(@fish) ? @fish.destroy : redirect_to(fish_index_path)
     # redirect_to users_fish_path
     redirect_to fish_index_path
   end
@@ -48,5 +48,8 @@ class FishController < ApplicationController
 
     def fish_params
       params.require(:fish).permit(:fish_image, :content, :title, :user_id)
+    end
+    def is_user_allowed_to_modify?(model)
+      model.user_id == current_user.id || current_user.is_admin?
     end
 end

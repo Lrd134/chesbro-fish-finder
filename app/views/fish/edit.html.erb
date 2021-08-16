@@ -1,3 +1,4 @@
 <h1>Editing Fish</h1>
 
 <%= render partial: 'form', locals: { user: @user } %>
+<%= button_to "Delete #{@fish.title}", delete_fish_path, method: 'post' %>
