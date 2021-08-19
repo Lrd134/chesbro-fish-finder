@@ -4,7 +4,8 @@ class Fish < ApplicationRecord
   belongs_to :user
   validates :title, presence: true, exclusion: { in: %w( - ? _ + - . , ; : ' " [ ] { } \ | = ! @ # $ % ^ & * ),
     message: "%{value} is reserved." }, length: { minimum: 3}
-  after_validation :capitalize_title
+  after_validation :capitalize_title, :update_category
+  before_create :force_unsolved
   has_one_attached :fish_image
 
   def slug
@@ -13,6 +14,14 @@ class Fish < ApplicationRecord
 
   def capitalize_title
     self.title = self.title.split(" ").map { | word | word.capitalize }.join(" ")
+  end
+
+  def update_category
+    self.solved == 1 ? self.category=(Category.find_by_slug('identified')) : self.category=(Category.find_by_slug('unidentified'))
+  end
+  def force_unsolved
+    self.solved = 0
+    self.category = Category.find_by_slug('unidentified')
   end
   
   def self.deslugify(slug)
