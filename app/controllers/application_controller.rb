@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
     params.require(:user).permit(:password, :username, :email)
   end
 
-  def is_user_allowed_to_modify?(model)
-    model.user_id == current_user.id || current_user.is_admin?
+  def is_user_allowed_to_modify?(model_instance)
+    model_instance.user_id == current_user.id || current_user.is_admin?
   end
   
 end
