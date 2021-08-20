@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   end
   def create
     byebug
-    if current_user.id == params['comment']['user_id'].to_i && Fish.find_by_slug(params['fish_slug']).id == params['comment']['fish_id']
+    if current_user.id == params['comment']['user_id'].to_i && Fish.find_by_slug(params['fish_slug']).id == params['comment']['fish_id'].to_i
       @comment = Comment.create(comment_params)
       redirect_to fish_path(@comment.fish.slug, @comment.fish.category.slug), notice: "Comment successfully created."
     else
