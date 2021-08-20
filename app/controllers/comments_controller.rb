@@ -1,12 +1,14 @@
 class CommentsController < ApplicationController
+  before_action :set_comment, only: [ :update, :show, :edit, :destroy ]
 
   def index
     @comments = Comment.all
   end
+
   def show
-    @comment = Comment.find_by(id: params[:id])
     @comment.nil? ? redirect_to(comments_path) : render(:show)
   end
+
   def create
     if current_user.id == params['comment']['user_id'].to_i && Fish.find_by_slug(params['fish_slug']).id == params['comment']['fish_id'].to_i
       @comment = Comment.create(comment_params)
@@ -20,7 +22,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    byebug
+  end
+
+  def set_comment
+    Comment.find_by(id: params['id'])
+  end
   def comment_params
     params.require(:comment).permit(:user_id, :fish_id, :body)
   end
+
 end
