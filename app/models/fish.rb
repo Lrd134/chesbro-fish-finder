@@ -13,7 +13,7 @@ class Fish < ApplicationRecord
   def slug
     self.title = self.title.split(" ").map { | word | word.downcase }.join("-")
   end
-  
+
   def category_slug
     self.category.slug
   end

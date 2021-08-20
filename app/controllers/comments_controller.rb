@@ -23,11 +23,19 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    byebug
+    if @comment.fish == Fish.find_by_slug(params['fish_slug'])
+      if @comment.user == current_user
+        render :edit
+      else
+        redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "You don't own this resource."
+      end
+    else
+      redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Error has occured"
+    end
   end
 
   def set_comment
-    Comment.find_by(id: params['id'])
+    @comment = Comment.find_by(id: params['id'])
   end
   def comment_params
     params.require(:comment).permit(:user_id, :fish_id, :body)
