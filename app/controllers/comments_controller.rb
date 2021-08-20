@@ -34,6 +34,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment.update(comment_params)
+    if @comment.body == params['comment']['body']
+      redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Updated successfully."
+    else
+      redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Update failed."
+    end
+  end
+
   def set_comment
     @comment = Comment.find_by(id: params['id'])
   end
