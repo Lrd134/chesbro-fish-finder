@@ -1,1 +1,4 @@
 <%= render 'fish', locals: { fish: @fish, user: @user } %>
+<% @fish.comments.each do | comment | %>
+  <%= render 'comment', model: comment %>
+<% end %>
