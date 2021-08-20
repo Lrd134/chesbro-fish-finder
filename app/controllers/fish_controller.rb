@@ -5,7 +5,9 @@ class FishController < ApplicationController
   def index
     @fish = Fish.all
   end
-  
+  def show
+    @comment = Comment.new
+  end
   def new
     @fish = Fish.new
   end
