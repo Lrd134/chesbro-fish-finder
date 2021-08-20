@@ -10,8 +10,11 @@ class CommentsController < ApplicationController
   def create
     if current_user.id == params['comment']['user_id'].to_i && Fish.find_by_slug(params['fish_slug']).id == params['comment']['fish_id'].to_i
       @comment = Comment.create(comment_params)
-      redirect_to fish_path(@comment.fish.slug, @comment.fish.category.slug), notice: "Comment successfully created."
-      
+      if @comment.nil?
+        redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Comment was too short."
+      else
+        redirect_to fish_path(@comment.fish.slug, @comment.fish.category.slug), notice: "Comment successfully created."
+      end
     else
       redirect_to fish_path(params['fish_slug'], params['cat_slug']), notice: "Error occurred"
     end
