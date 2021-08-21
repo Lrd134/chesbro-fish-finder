@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [ :update, :show, :edit, :destroy ]
-  before_action :current_user, only: %i[ show new create ]
+  before_action :current_user, only: %i[ show new ]
   before_action :set_fish, only: %i[ new ]
 
   def index
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if @user.param_check?(params, 'comment') && Fish.slugs_match?(params, 'comment')
+    if is_user_allowed_to_modify(@comment) && Fish.slugs_match?(params, 'comment')
       @comment = Comment.create(comment_params)
       if @comment.nil?
         redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Comment was too short, length must be greater than 15"
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
 
   def edit
     if @comment.fish == Fish.find_by_slug(params['fish_slug'])
-      if @comment.user == @user
+      if is_user_allowed_to_modify?(@comment)
         render :edit
       else
         redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "You don't own this resource."
