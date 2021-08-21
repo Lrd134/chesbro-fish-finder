@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [ :update, :show, :edit, :destroy ]
-  before_action :current_user, only: %i[ show ]
+  before_action :current_user, only: %i[ show new ]
+  before_action :set_fish, only: %i[ new ]
 
   def index
     @comments = Comment.all
@@ -9,6 +10,7 @@ class CommentsController < ApplicationController
   def show
     @comment.nil? ? redirect_to(comments_path) : render(:show)
   end
+
 
   def create
     if @user.id == params['comment']['user_id'].to_i && Fish.find_by_slug(params['fish_slug']).id == params['comment']['fish_id'].to_i
