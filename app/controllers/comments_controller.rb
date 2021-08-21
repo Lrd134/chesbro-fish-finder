@@ -11,6 +11,9 @@ class CommentsController < ApplicationController
     @comment.nil? ? redirect_to(comments_path) : render(:show)
   end
 
+  def new
+    @comment = Comment.new
+  end
 
   def create
     if @user.id == params['comment']['user_id'].to_i && Fish.find_by_slug(params['fish_slug']).id == params['comment']['fish_id'].to_i
