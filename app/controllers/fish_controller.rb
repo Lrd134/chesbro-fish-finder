@@ -19,7 +19,7 @@ class FishController < ApplicationController
 
   def edit
     if !is_user_allowed_to_modify?(@fish) && @fish.nil?
-      redirect_to fish_index_path
+      redirect_to fish_index_path, notice: "You're not allowed to modify this resource."
     end
   end
 
