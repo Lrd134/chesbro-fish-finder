@@ -30,6 +30,10 @@ class Fish < ApplicationRecord
     self.solved = 0
     self.category = Category.find_by_slug('unidentified')
   end
+
+  def self.slugs_match?(params, model)
+    find_by_slug(params['fish_slug']).id == params[model]['fish_id'].to_i
+  end
   
   def self.deslugify(slug)
     slug.split("-").map { | word | word.capitalize }.join(" ")

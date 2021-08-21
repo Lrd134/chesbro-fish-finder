@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if @user.param_check?(params, 'comment') && Fish.find_by_slug(params['fish_slug']).id == params['comment']['fish_id'].to_i
+    if @user.param_check?(params, 'comment') && Fish.slugs_match?(params, 'comment')
       @comment = Comment.create(comment_params)
       if @comment.nil?
         redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Comment was too short, length must be greater than 15"
