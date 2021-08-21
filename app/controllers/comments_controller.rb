@@ -44,9 +44,19 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    if is_user_allowed_to_modify?(@comment)
+      @comment.destroy
+      redirect_to fish_index_path, notice: "Comment removed successfully."
+    else
+      redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Not allowed to modify this resource."
+    end
+  end
+
   def set_comment
     @comment = Comment.find_by(id: params['id'])
   end
+  
   def comment_params
     params.require(:comment).permit(:user_id, :fish_id, :body)
   end
