@@ -41,9 +41,7 @@ class FishController < ApplicationController
 
   private
     
-    def set_fish
-      @fish = Fish.find_by_slug(params[:fish_slug])
-    end
+
 
     def check_session_for_user
       current_user.nil? ? redirect_to(:fish_index, notice: "Not Logged In") : nil
