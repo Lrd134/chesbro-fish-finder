@@ -20,6 +20,14 @@ class User < ApplicationRecord
     @user.nil? ? User.create(user_hash) : @user
   end
 
+  def display
+    if self.username.nil?
+      self.email
+    else
+      self.username
+    end
+  end
+  
   def set_admin
     self.admin.nil? ? self.admin=(0) : self.admin=(self.admin)
   end
