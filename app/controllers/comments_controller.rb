@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment.nil? ? redirect_to(comments_path) : render(:show)
+    @comment.nil? ? redirect_to(comments_path, notice: "Comment not found.") : render(:show)
   end
 
   def new
