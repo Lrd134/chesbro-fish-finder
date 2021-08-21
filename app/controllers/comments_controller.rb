@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [ :update, :show, :edit, :destroy ]
   before_action :current_user, only: %i[ show new ]
-  before_action :set_fish, only: %i[ new ]
+  before_action :set_fish, only: %i[ new edit ]
 
   def index
     @comments = Comment.all
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    if @comment.fish == Fish.find_by_slug(params['fish_slug'])
+    if @comment.fish == @fish
       if is_user_allowed_to_modify?(@comment)
         render :edit
       else
