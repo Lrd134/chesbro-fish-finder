@@ -14,7 +14,11 @@ class FishController < ApplicationController
   
   def create
     @fish = Fish.create(fish_params)
-    redirect_to fish_path(@fish.slug, @fish.category.slug)
+    if @fish.id.nil?
+      redirect_to fish_index_path, notice: "Fish was not created."
+    else
+      redirect_to fish_path(@fish.slug, @fish.category.slug), notice: "Fish created successfully"
+    end
   end
 
   def edit
@@ -28,15 +32,15 @@ class FishController < ApplicationController
     if is_user_allowed_to_modify?(@fish)
       @fish.update(fish_params)
     else
-      redirect_to fish_index_path
+      redirect_to fish_index_path, notice: "Not allowed to modify this resource."
     end
-    redirect_to fish_path @fish.slug, @fish.category.slug
+    redirect_to fish_path @fish.slug, @fish.category.slug, notice: "Updated fish successfully"
   end
   
   def destroy
-    is_user_allowed_to_modify?(@fish) ? @fish.destroy : redirect_to(fish_index_path)
+    is_user_allowed_to_modify?(@fish) ? @fish.destroy : redirect_to(fish_index_path, notice: "Not allowed to modify.")
     # redirect_to users_fish_path
-    redirect_to fish_index_path
+    redirect_to fish_index_path, notice: "Desroyed fish successfully"
   end
 
   private
