@@ -1,5 +1,20 @@
-<%= @user.display %>
+<div class="user box">
+<%= @user.display %><br>
 <% if @user == @current_user %>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Edit', edit_user_path(@user) %><br>
+  <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
+</div><br>
+<div class="fish box">
+<%= @user.display%>'s Fish:<br>
+<% @user.fish.each do | fish | %>
+  <%= link_to fish.title, fish_path(fish.slug, fish.category_slug) %><br>
+<% end %>
+</div><br>
+<div class="comment box">
+<%=@user.display%>'s Comments: <br>
+<% @user.comments.each do | comment | %>
+  <%= link_to "##{comment.id}", comment_path(comment.fish_slug, comment.category_slug, comment) %><br>
+<% end %>
+</div><br>
 <%= link_to 'Back', users_path %>
