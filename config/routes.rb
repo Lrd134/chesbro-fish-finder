@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   resources :users, except: [:create, :new]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  get '/signup', to: 'users#new'
+  get '/signup', to: 'users#new', as: "new_user"
   post '/users', to: 'sessions#create'
-  get '/login', to: 'sessions#login'
+  get '/login', to: 'sessions#login', as: 'login'
   get '/logout', to: 'sessions#destroy'
   get '/user/username/:id', to: 'users#username', as: 'create_username'
   match '/auth/:provider/callback', to: 'sessions#omniauth', via: [:get, :post]
