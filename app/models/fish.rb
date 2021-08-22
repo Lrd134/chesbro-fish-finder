@@ -23,6 +23,7 @@ class Fish < ApplicationRecord
   end
 
   def update_category
+    byebug
     self.solved == 1 ? self.category=(Category.find_by_slug('identified')) : self.category=(Category.find_by_slug('unidentified'))
   end
 

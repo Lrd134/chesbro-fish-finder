@@ -9,15 +9,17 @@ class FishController < ApplicationController
     @comment = Comment.new
   end
   def new
+    set_user
     @fish = Fish.new
   end
   
   def create
+    set_user
     @fish = Fish.create(fish_params)
-    if @fish.id.nil?
-      redirect_to fish_index_path, notice: "Fish was not created."
-    else
+    if @fish.valid?
       redirect_to fish_path(@fish.slug, @fish.category.slug), notice: "Fish created successfully"
+    else
+      render :new
     end
   end
 
@@ -55,7 +57,7 @@ class FishController < ApplicationController
     end
     
     def fish_params
-      params.require(:fish).permit(:fish_image, :content, :title, :user_id)
+      params.require(:fish).permit(:fish_image, :content, :title, :user_id, :category_id)
     end
 
 end
