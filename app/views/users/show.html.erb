@@ -2,7 +2,7 @@
 <%= @user.display %><br>
 <% if @user == @current_user %>
   <%= link_to 'Edit', edit_user_path(@user) %><br>
-  <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Destroy', user_path, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 </div><br>
 <div class="fish box">
