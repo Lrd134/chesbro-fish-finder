@@ -1,5 +1,15 @@
 <h1> Warning. If you do not set a username your email will be publicly viewable. </h1>
   <%= form_for @user do | form | %>
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
     <%= form.label :username %>
     <%= form.text_field :username %>
     <%= form.submit %>
