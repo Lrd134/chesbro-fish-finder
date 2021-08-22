@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: %i[ edit update destroy username ]
+  before_action :set_user, only: %i [ edit update destroy show username ]
 
   def index
     @users = User.all
@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def show
     @current_user = current_user
-    @user = User.find_by(id: params['id'])
     if !@user.nil?
       render :show
     else
@@ -34,7 +33,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    if is_user_allowed_to_modify?(@user)
+      @user.destroy
+      redirect_to users_index_path, notice: "User deleted successfully."
+    else
+      redirect_to user_path(@user), notice: "You're not allowed to delete this user."
+    end
   end
 
   def username
