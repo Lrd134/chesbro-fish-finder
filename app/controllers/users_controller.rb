@@ -22,7 +22,12 @@ class UsersController < ApplicationController
   def edit
   end
   def update
-
+    if is_user_allowed_to_modify?(@user) 
+      @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      redirect_to users_index_path notice: "You're not allowed to modify this resource."
+    end
   end
 
   def destroy
