@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
     if model_instance.class != User
       model_instance.user_id == current_user.id || current_user.admin?
     else
-      byebug
       model_instance.id == current_user.id || current_user.admin?
     end
   end
