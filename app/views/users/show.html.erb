@@ -14,7 +14,7 @@
 <div class="comment box">
 <%=@user.display%>'s Comments: <br>
 <% @user.comments.each do | comment | %>
-  <%= link_to "##{comment.id}", comment_path(comment.fish_slug, comment.category_slug, comment) %><br>
+  <%= link_to "Comment ##{comment.id}", comment_path(comment.fish_slug, comment.category_slug, comment) %> on <%= comment.fish_title %> <br>
 <% end %>
 </div><br>
 <%= link_to 'Back', users_path %>

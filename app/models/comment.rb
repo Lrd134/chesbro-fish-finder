@@ -6,6 +6,11 @@ class Comment < ApplicationRecord
   def category_slug
     self.fish.category.slug
   end
+  
+  def fish_title
+    Fish.deslugify(self.fish.title)
+  end
+
   def fish_slug
     self.fish.slug
   end
