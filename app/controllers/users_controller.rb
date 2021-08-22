@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: %i[ edit update destroy ]
+  before_action :current_user, only: %i[ edit update destroy username ]
 
   def index
     @users = User.all
@@ -29,5 +29,8 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  def username
+    is_user_allowed_to_modify?(@user) ? render(:username, notice: "Username strongly suggested.") : redirect_to(users_index_path)
+  end
 
 end

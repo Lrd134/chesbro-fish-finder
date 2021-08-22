@@ -16,12 +16,12 @@ class SessionsController < ApplicationController
     
     if @user.nil?
       @user=(User.create(user_params))
-      @user.username.empty? ? redirect_to(create_username_path(@user)) : nil
+     
     end
 
     if @user.authenticate(params['user']['password'])
       session[:uid] = @user.id
-      redirect_to user_path(@user)
+      @user.username.empty? ? redirect_to(create_username_path(@user)) : redirect_to(user_path(@user))
     else
       redirect_to root_path
     end
