@@ -12,15 +12,7 @@ class SessionsController < ApplicationController
     @user = User.new
   end
   def create
-    if params['user']['username'].empty?
-      @user = User.find_by(username: params['user']['email'])
-    else
-      @user = User.find_by(username: params['user']['username'])
-    end
-    
-    if @user.nil?
-      @user=(User.create(user_params))
-    end
+    @user = User.create user_params 
     if @user.valid?
       if @user.authenticate(params['user']['password'])
         session[:uid] = @user.id
