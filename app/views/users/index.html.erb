@@ -11,10 +11,6 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.display, user %></td>
-        <% if logged_in? %>
-          <td><%= link_to 'Edit', edit_user_path(user) %></td>
-          <td></td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
