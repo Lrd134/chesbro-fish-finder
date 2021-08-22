@@ -24,9 +24,9 @@ class User < ApplicationRecord
 
   def display
     if self.username.nil?
-      self.email
+      self.email.capitalize
     else
-      self.username
+      self.username.capitalize
     end
   end
   
