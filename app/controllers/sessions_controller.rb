@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     
     if @user.nil?
       @user=(User.create(user_params))
+      @user.username.empty? ? redirect_to(create_username_path(@user)) : nil
     end
 
     if @user.authenticate(params['user']['password'])
