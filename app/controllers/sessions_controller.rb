@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         redirect_to root_path
       end
     else
-      redirect_to new_user_path
+      render :'users/new'
     end
   end
   def destroy
