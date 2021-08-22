@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @user = User.find_by(id: session[:uid])
+    User.find_by(id: session[:uid])
   end
 
   def set_fish
@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     if model_instance.class != User
       model_instance.user_id == current_user.id || current_user.admin?
     else
+      byebug
       model_instance.id == current_user.id || current_user.admin?
     end
   end
