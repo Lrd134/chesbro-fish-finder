@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
   end
 
   def is_user_allowed_to_modify?(model_instance)
-    model_instance.user_id == current_user.id || current_user.admin?
+    if model_instance.class != User
+      model_instance.user_id == current_user.id || current_user.admin?
+    else
+      model_instance.id == current_user.id || current_user.admin?
+    end
   end
   
 end

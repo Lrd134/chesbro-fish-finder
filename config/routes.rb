@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   post '/users', to: 'sessions#create'
   get '/login', to: 'sessions#login'
   get '/logout', to: 'sessions#destroy'
-  get '/user/username', to: 'users#username', as: 'create_username'
+  get '/user/username/:id', to: 'users#username', as: 'create_username'
   match '/auth/:provider/callback', to: 'sessions#omniauth', via: [:get, :post]
 
 
