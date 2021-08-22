@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [ :update, :show, :edit, :destroy ]
-  before_action :current_user, only: %i[ show new ]
+  before_action :set_user, only: %i[ show new ]
   before_action :set_fish, only: %i[ new edit ]
 
   def index
@@ -56,6 +56,10 @@ class CommentsController < ApplicationController
     else
       redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Not allowed to modify this resource."
     end
+  end
+  
+  def set_user
+    @user = current_user
   end
 
   def set_comment
