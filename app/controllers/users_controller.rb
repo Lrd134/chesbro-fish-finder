@@ -19,8 +19,11 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+  
   def edit
+    is_user_allowed_to_modify?(@user) ? render(:edit) : redirect_to(users_index_path, notice: "You're not allowed to modify this resource.")
   end
+
   def update
     if is_user_allowed_to_modify?(@user) 
       @user.update(user_params)
