@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :categories, through: :fish
   has_secure_password
   before_create :set_admin
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
 
 
   def self.from_omniauth(response)

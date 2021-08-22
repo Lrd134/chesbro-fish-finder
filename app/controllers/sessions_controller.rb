@@ -20,14 +20,16 @@ class SessionsController < ApplicationController
     
     if @user.nil?
       @user=(User.create(user_params))
-     
     end
-
-    if @user.authenticate(params['user']['password'])
-      session[:uid] = @user.id
-      @user.username.empty? ? redirect_to(create_username_path(@user)) : redirect_to(user_path(@user))
+    if @user.valid?
+      if @user.authenticate(params['user']['password'])
+        session[:uid] = @user.id
+        @user.username.empty? ? redirect_to(create_username_path(@user)) : redirect_to(user_path(@user))
+      else
+        redirect_to root_path
+      end
     else
-      redirect_to root_path
+      redirect_to new_user_path
     end
   end
   def destroy
