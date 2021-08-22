@@ -45,4 +45,8 @@ class UsersController < ApplicationController
     is_user_allowed_to_modify?(@user) ? render(:username, notice: "Username strongly suggested.") : redirect_to(users_index_path)
   end
 
+  def set_user
+    @user = User.find_by(id: params[:id])  
+  end
+  
 end
