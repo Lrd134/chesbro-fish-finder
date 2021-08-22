@@ -4,7 +4,7 @@
 <%= @fish.category.name.capitalize%><br>
 <%= @fish.content %><br>
 <%= @fish.fish_image.attached? ? image_tag(@fish.fish_image) : "No Image Provided" %>
-<% if logged_id? %>
+<% if logged_in? %>
   <%= render partial: 'comments/form', locals: { user: @user, fish: @fish } %>
 <% else %>
   <%= "Login to Comment" %>

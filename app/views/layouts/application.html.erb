@@ -11,8 +11,10 @@
   </head>
 
   <body>
+    <%= link_to "Fish", fish_index_path %>
+    <%= link_to "Categories", categories_path %>
+    <%= link_to "Users", users_path %>
     <% if logged_in? %>
-      <%= link_to "Fish", fish_index_path %>
       <%= link_to "Logout", logout_path %>
     <% else %>
       <%= link_to "Signup", new_user_path %>
