@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <% if current_user %>
+    <% if logged_in? %>
       <%= button_to "Fish", fish_index_path %>
       <%= button_to "Logout", logout_path %>
     <% else %>
