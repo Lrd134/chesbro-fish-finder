@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def destroy
     if is_user_allowed_to_modify?(@user)
       @user.destroy
-      redirect_to users_path, notice: "User deleted successfully."
+      redirect_to logout_path
     else
       redirect_to user_path(@user), notice: "You're not allowed to delete this user."
     end
