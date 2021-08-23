@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    is_user_allowed_to_modify?(@user) ? render(:edit) : redirect_to(users_index_path, notice: "You're not allowed to modify this resource.")
+    is_user_allowed_to_modify?(@user) ? render(:edit) : redirect_to(users_path, notice: "You're not allowed to modify this resource.")
   end
 
   def update
@@ -28,21 +28,21 @@ class UsersController < ApplicationController
       @user.update(user_params)
       redirect_to user_path(@user)
     else
-      redirect_to users_index_path notice: "You're not allowed to modify this resource."
+      redirect_to users_path notice: "You're not allowed to modify this resource."
     end
   end
 
   def destroy
     if is_user_allowed_to_modify?(@user)
       @user.destroy
-      redirect_to users_index_path, notice: "User deleted successfully."
+      redirect_to users_path, notice: "User deleted successfully."
     else
       redirect_to user_path(@user), notice: "You're not allowed to delete this user."
     end
   end
 
   def username
-    is_user_allowed_to_modify?(@user) ? render(:username, notice: "Username strongly suggested.") : redirect_to(users_index_path)
+    is_user_allowed_to_modify?(@user) ? render(:username, notice: "Username strongly suggested.") : redirect_to(users_path)
   end
 
   def set_user
