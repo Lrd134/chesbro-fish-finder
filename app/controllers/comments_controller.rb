@@ -18,13 +18,13 @@ class CommentsController < ApplicationController
   def create
     if Fish.slugs_match?(params, 'comment')
       @comment = Comment.create(comment_params)
-      if @comment.nil?
-        redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Comment was too short, length must be greater than 15"
-      else
+      if @comment.valid?
         redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Comment successfully created."
+      else
+        render :new
       end
     else
-      redirect_to fish_path(params['fish_slug'], params['cat_slug']), notice: "Error occurred"
+      redirect_to fish_path(params['fish_slug'], params['cat_slug']), notice: "Fish not found."
     end
   end
 
@@ -42,10 +42,10 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comment_params)
-    if @comment.body == params['comment']['body']
+    if @comment.valid?
       redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Updated successfully."
     else
-      redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Update failed."
+      render :edit
     end
   end
 
