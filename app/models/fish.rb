@@ -34,8 +34,10 @@ class Fish < ApplicationRecord
   end
   
   def self.newest
-    self.order(updated_at: :desc).limit(1)
+    self.order(created_at: :desc).limit(1)
   end
+
+
 
   def self.slugs_match?(params, model)
     find_by_slug(params['fish_slug']).id == params[model]['fish_id'].to_i
