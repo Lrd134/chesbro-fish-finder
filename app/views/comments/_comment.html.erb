@@ -1,2 +1,3 @@
-<%= link_to "Comment Creator", user_path(comment.user) %>
+<%= link_to "#{comment.user.display}", user_path(comment.user) %>
+<%= link_to "Show ##{comment.id}", comment_path(comment.fish_slug, comment.category_slug, comment.id) %>
 <%= comment.body %>
