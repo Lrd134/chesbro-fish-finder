@@ -34,7 +34,7 @@ class Fish < ApplicationRecord
   end
   
   def self.newest
-
+    self.order(updated_at: :desc).limit(1)
   end
 
   def self.slugs_match?(params, model)
