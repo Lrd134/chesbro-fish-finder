@@ -40,9 +40,13 @@ class FishController < ApplicationController
   end
   
   def destroy
-    is_user_allowed_to_modify?(@fish) ? @fish.destroy : redirect_to(fish_index_path, notice: "Not allowed to modify.")
-    # redirect_to users_fish_path
-    redirect_to fish_index_path, notice: "Desroyed fish successfully"
+    if is_user_allowed_to_modify?(@fish)
+      @fish.comments.each { | c | c.destroy }
+      @fish.destroy
+      redirect_to fish_index_path, notice: "Desroyed fish successfully"
+    else
+      redirect_to fish_path(@fish.slug, @fish.category_slug), notice: "Not allowed to modify this fish"
+    end
   end
 
   private

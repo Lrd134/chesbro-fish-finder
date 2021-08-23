@@ -1,8 +1,8 @@
 
 <%= @fish.title %><br>
-<% if @user = @fish.user  %>
+<% if @user == @fish.user  %>
   <%= link_to "Edit #{@fish.title}", edit_fish_path(@fish.slug, @fish.category_slug) %><br>
-  <%= link_to "Delete #{@fish.title}", fish_path(@fish.slug, @fish.category_slug), method: :delete, data: { confirm: "Are you sure?"} %>
+  <%= link_to "Delete #{@fish.title}", fish_path(@fish.slug, @fish.category_slug), method: :dlete, data: { confirm: "Are you sure?"} %><br>
 <% end %>
 <%= @fish.category.name.capitalize%><br>
 <%= @fish.content %><br>
