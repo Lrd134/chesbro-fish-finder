@@ -24,7 +24,7 @@ class FishController < ApplicationController
   end
 
   def edit
-    if !is_user_allowed_to_modify?(@fish) && @fish.nil?
+    if !is_user_allowed_to_modify?(@fish)
       redirect_to fish_index_path, notice: "You're not allowed to modify this resource."
     end
   end
@@ -33,10 +33,15 @@ class FishController < ApplicationController
     @fish = Fish.find(params[:id])
     if is_user_allowed_to_modify?(@fish)
       @fish.update(fish_params)
+      if @fish.valid?
+        redirect_to fish_path @fish.slug, @fish.category.slug, notice: "Updated fish successfully"
+      else
+        render :edit
+      end
     else
       redirect_to fish_index_path, notice: "Not allowed to modify this resource."
     end
-    redirect_to fish_path @fish.slug, @fish.category.slug, notice: "Updated fish successfully"
+    
   end
   
   def destroy
