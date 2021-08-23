@@ -1,4 +1,3 @@
-
 <%= @fish.title %><br>
 <% if @user == @fish.user  %>
   <%= link_to "Edit #{@fish.title}", edit_fish_path(@fish.slug, @fish.category_slug) %><br>
