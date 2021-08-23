@@ -26,7 +26,11 @@ class UsersController < ApplicationController
   def update
     if is_user_allowed_to_modify?(@user) 
       @user.update(user_params)
-      redirect_to user_path(@user)
+      if @user.valid?
+        redirect_to user_path(@user)
+      else
+        render :edit
+      end
     else
       redirect_to users_path notice: "You're not allowed to modify this resource."
     end
