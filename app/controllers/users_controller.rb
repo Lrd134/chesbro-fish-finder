@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     if is_user_allowed_to_modify?(@user)
+      @user.fish.each { | fish | fish.destroy }      
       @user.destroy
       redirect_to logout_path
     else
