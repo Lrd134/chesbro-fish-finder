@@ -29,7 +29,3 @@ User: <%= @user.display %>
   <%= link_to "Comment ##{comment.id}", comment_path(comment.fish_slug, comment.category_slug, comment) %> on <%= comment.fish_title %> <br>
 <% end %>
 </div>
-<br>
-<div class="action box">
-<%= link_to 'Back', users_path %>
-</div>
