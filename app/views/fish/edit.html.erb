@@ -1,4 +1,5 @@
+<div class="fish box">
 <h1>Editing Fish</h1>
-
 <%= render partial: 'form', locals: { user: @user } %>
 <%= button_to "Delete #{@fish.title}", delete_fish_path, method: 'post', data: {confirm: "Are you sure you wish to delete #{@fish.title}?"} %>
+</div>

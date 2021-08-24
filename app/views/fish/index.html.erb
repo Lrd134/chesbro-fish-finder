@@ -1,14 +1,13 @@
-<div class="action box"
+<div class="action box">
   <%= link_to "Recently Updated Fish", recent_fish_path %>
   <%= link_to "Newest Fish", newest_fish_path %>
   <%= link_to "Last Identified Fish", recently_solved_fish_path %>
   <%= link_to "New Fish", new_fish_path %>
 </div>
-<div class="fish box"
+<div class="fish box">
   <h1>Fish</h1>
     <% @fish.each do |fish| %>
-      <%=link_to fish.title, fish_path(fish.slug, fish.category_slug)%><br>
-      <%=fish.category.name.capitalize%><br>
+      <%=link_to fish.title, fish_path(fish.slug, fish.category_slug)%> Category: <%=fish.category.name.capitalize%><br>
     <% end %>
 </div>
 

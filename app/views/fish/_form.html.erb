@@ -1,3 +1,4 @@
+<div class="form box">
 <%= form_with(model: @fish) do |form| %>
   <% if @fish.errors.any? %>
     <div id="error_explanation">
@@ -21,9 +22,7 @@
   <%= form.text_field :content %><br>
 
   <%= form.label :fish_image, "Upload Image Here" %><br>
-  <%= form.file_field :fish_image %><br><br>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.file_field :fish_image %><br>
+  <%= form.submit %>
 <% end %>
+</div>
