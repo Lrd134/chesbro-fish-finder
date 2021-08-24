@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
   resources :users, except: [:create, :new]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  get '/:id/categories', to: 'users#categories', as: "users_categories"
   get '/signup', to: 'users#new', as: "new_user"
   post '/users', to: 'sessions#create'
   get '/login', to: 'sessions#login', as: 'login'

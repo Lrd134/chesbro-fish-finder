@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ edit update destroy show username ]
+  before_action :set_user, only: %i[ edit update destroy show username categories ]
 
   def index
     @users = User.all
@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     else
       redirect_to user_path(@user), notice: "You're not allowed to delete this user."
     end
+  end
+  
+  def categories
+    render :categories
   end
 
   def username
