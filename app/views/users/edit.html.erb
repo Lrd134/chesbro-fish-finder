@@ -1,8 +1,9 @@
-<%= render 'user', model: @user %>
+<div class="action box">
+<%= link_to "#{@user.display}", @user %>
+<%= link_to 'Back', users_path %>
 
-
-
+<div class="user box">
 <h1>Editing User</h1>
 <%= render 'form', user: @user %>
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+</div>
+</div>

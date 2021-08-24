@@ -1,4 +1,6 @@
+<div class="box">
 <%= @user.categories.empty? ? "No Posts Yet." : "Has Posts in:" %>
 <% @user.categories.each do | category | %>
   <%= link_to category.slug.capitalize, category_path(category.slug) %>
 <% end %>
+</div>

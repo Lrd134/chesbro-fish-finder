@@ -15,7 +15,7 @@ User: <%= @user.display %>
 </div>
 <br>
 
-<div class="fish box">
+<div class="box">
 <%= @user.fish.empty? ? "No Posts Yet" : "#{@user.display}'s Fish:" %><br>
 <% @user.fish.each do | fish | %>
   <%= link_to fish.title, fish_path(fish.slug, fish.category_slug) %><br>
@@ -23,13 +23,13 @@ User: <%= @user.display %>
 </div>
 <br>
 
-<div class="comment box">
+<div class="box">
 <%= @user.comments.empty? ? "No Comments Yet" : "#{@user.display}'s Comments:" %><br>
 <% @user.comments.each do | comment | %>
   <%= link_to "Comment ##{comment.id}", comment_path(comment.fish_slug, comment.category_slug, comment) %> on <%= comment.fish_title %> <br>
 <% end %>
 </div>
 <br>
-
+<div class="action box">
 <%= link_to 'Back', users_path %>
-
+</div>
