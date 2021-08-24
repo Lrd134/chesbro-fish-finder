@@ -1,11 +1,13 @@
 <%= link_to "Users Categories", users_categories_path(@user) %>
 <%= link_to "Users Fish", users_fish_path(@user) %>
 <div class="user box">
-<%= @user.display %><br>
+User: <%= @user.display %>
 <% if @user == @current_user %>
-  <%= link_to 'Edit', edit_user_path(@user) %><br>
+<div class="edit box">
+  <%= link_to 'Edit', edit_user_path(@user) %>
   <%= link_to 'Destroy', user_path, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
+</div>
 </div><br>
 <div class="fish box">
 <%= @user.fish.empty? ? "No Posts Yet" : "#{@user.display}'s Fish:" %><br>

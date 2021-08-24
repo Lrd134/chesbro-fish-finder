@@ -25,4 +25,13 @@
         background-color: #fff0;
         border-color: #fff0;
       }
+      .box {
+        padding: 4px;
+        padding-left: 10px;
+        border: solid 1px black;
+        margin: 32px;
+      }
+      body {
+        background: rgb(19, 94, 0);
+      }
       
