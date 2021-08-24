@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   scope '/fish' do
     get '/newest', to: "fish#newest", as: "newest_fish"
     get '/recent', to: "fish#recent", as: "recent_fish"
+    get '/last_solved', to: "fish#solved", as: "recently_solved_fish"
     scope '/:fish_slug' do
       scope '/:cat_slug' do
         get '/edit', to: 'fish#edit', as: 'edit_fish'
