@@ -1,3 +1,5 @@
+<div class="comment box">
 <%= link_to "#{comment.user.display}", user_path(comment.user.id) %>
 <%= link_to "Show ##{comment.id}", comment_path(comment.fish_slug, comment.category_slug, comment.id) %>
 <%= comment.body %>
+</div>
