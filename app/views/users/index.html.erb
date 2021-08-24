@@ -1,21 +1,7 @@
+<div class="user box">
 <h1>Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.display, user %></td>
-      </tr>
+        <%= link_to user.display, user_path(user) %><br>
     <% end %>
-  </tbody>
-</table>
-
 <br>
-
-<%= link_to 'New User', new_user_path %>
+</div>

@@ -50,7 +50,7 @@
       .form {
         background: royalblue;
       }
-      .form input {
+      .form input, .button_to input[type=submit] {
         background: yellowgreen;
       }
       a {
