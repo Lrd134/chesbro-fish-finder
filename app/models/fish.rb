@@ -3,8 +3,8 @@ class Fish < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
-  validates :title, presence: true, exclusion: { in: %w( - ? _ + - . , ; : ' " [ ] { } \ | = ! @ # $ % ^ & * ),
-    message: "%{value} is reserved." }, length: { minimum: 3}
+  validates :title, exclusion: { in: %w( - ? _ + - . , ; : ' " [ ] { } \ | = ! @ # $ % ^ & * newest recent ),
+    message: "%{value} is reserved." }
   validates :content, length: { minimum: 10 }
 
   after_validation :capitalize_title
