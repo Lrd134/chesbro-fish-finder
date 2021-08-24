@@ -38,6 +38,10 @@ class Fish < ApplicationRecord
     self.order(created_at: :desc).limit(1)
   end
 
+  def self.recent
+    self.order(updated_at: :desc).limit(1)
+  end
+
   def self.last_solved
     self.where('category_id == 1').order(updated_at: :desc).limit(1)
   end
