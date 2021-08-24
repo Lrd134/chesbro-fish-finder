@@ -18,9 +18,8 @@ class FishController < ApplicationController
   def create
     set_user
     @fish = Fish.create(fish_params)
-    byebug
-    if @fish.errors.nil?
-      redirect_to fish_path(@fish.slug, @fish.category.slug), notice: "Fish created successfully"
+    if @fish.valid?
+      redirect_to fish_path(@fish.slug, @fish.category_slug), notice: "Fish created successfully"
     else
       render :new
     end

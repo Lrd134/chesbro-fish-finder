@@ -1,24 +1,14 @@
-<%= link_to "Recently Updated Fish", recent_fish_path %>
-<%= link_to "Newest Fish", newest_fish_path %>
-<%= link_to "Last Identified Fish", recently_solved_fish_path %>
-<%= link_to "New Fish", new_fish_path %>
-<h1>Fish</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="action box"
+  <%= link_to "Recently Updated Fish", recent_fish_path %>
+  <%= link_to "Newest Fish", newest_fish_path %>
+  <%= link_to "Last Identified Fish", recently_solved_fish_path %>
+  <%= link_to "New Fish", new_fish_path %>
+</div>
+<div class="fish box"
+  <h1>Fish</h1>
     <% @fish.each do |fish| %>
-      <tr>
-        <td><%=link_to fish.title, fish_path(fish.slug, fish.category_slug)%></td>
-        <td><%=fish.category.name.capitalize%></td>
-      </tr>
+      <%=link_to fish.title, fish_path(fish.slug, fish.category_slug)%><br>
+      <%=fish.category.name.capitalize%><br>
     <% end %>
-  </tbody>
-</table>
+</div>
 
-<br>
