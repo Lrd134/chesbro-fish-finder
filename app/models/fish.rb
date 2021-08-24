@@ -3,7 +3,7 @@ class Fish < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
-  validates :title, exclusion: { in: %w( - ? _ + - . , ; : ' " [ ] { } \ | = ! @ # $ % ^ & * newest recent ),
+  validates :title, exclusion: { in: %w( - ? _ + - . , ; : ' " [ ] { } \ | = ! @ # $ % ^ & * newest recent last_solved ),
     message: "%{value} is reserved." }
   validates :content, length: { minimum: 10 }
 
