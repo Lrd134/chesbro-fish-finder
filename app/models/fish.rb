@@ -5,6 +5,7 @@ class Fish < ApplicationRecord
 
   validates :title, presence: true, exclusion: { in: %w( - ? _ + - . , ; : ' " [ ] { } \ | = ! @ # $ % ^ & * ),
     message: "%{value} is reserved." }, length: { minimum: 3}
+  validates :content, length: { minimum: 10 }
 
   after_validation :capitalize_title
   before_save :update_category

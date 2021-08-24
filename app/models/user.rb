@@ -6,6 +6,7 @@ class User < ApplicationRecord
   before_create :set_admin
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   validates :username, uniqueness: true
+  validates :password, length: { minimum: 4 }
 
 
   def self.from_omniauth(response)
