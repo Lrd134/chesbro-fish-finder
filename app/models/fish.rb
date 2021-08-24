@@ -6,8 +6,8 @@ class Fish < ApplicationRecord
   validates :title, presence: true, exclusion: { in: %w( - ? _ + - . , ; : ' " [ ] { } \ | = ! @ # $ % ^ & * ),
     message: "%{value} is reserved." }, length: { minimum: 3}
 
-  after_validation :capitalize_title, :update_category
-
+  after_validation :capitalize_title
+  before_save :update_category
   before_create :force_unsolved
 
   has_one_attached :fish_image
@@ -25,7 +25,7 @@ class Fish < ApplicationRecord
   end
 
   def update_category
-    self.solved == 1 ? self.category=(Category.find_by_slug('identified')) : self.category=(Category.find_by_slug('unidentified'))
+    self.solved == true ? self.category=(Category.find_by_slug('identified')) : self.category=(Category.find_by_slug('unidentified'))
   end
 
   def force_unsolved
@@ -37,7 +37,9 @@ class Fish < ApplicationRecord
     self.order(created_at: :desc).limit(1)
   end
 
-
+  def self.last_solved
+    self.where('category_id == 1').order(updated_at: :desc).limit(1)
+  end
 
   def self.slugs_match?(params, model)
     find_by_slug(params['fish_slug']).id == params[model]['fish_id'].to_i
