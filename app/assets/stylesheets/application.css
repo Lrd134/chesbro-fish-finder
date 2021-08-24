@@ -28,7 +28,9 @@
       .box {
         padding: 4px;
         padding-left: 10px;
+        padding-right: 10px;
         border: solid 1px black;
+        border-radius: 5px;
         margin: 32px;
         background:rgb(19, 94, 115)
       }
@@ -37,9 +39,9 @@
       }
       .user {
         padding-top: 4px;
-        margin-top: 16px;
-        background:rgb(75, 94, 115)
-        
+        margin: auto;
+        background:rgb(75, 94, 115);
+        text-align: center;
       }
       .action {
         text-align: right;

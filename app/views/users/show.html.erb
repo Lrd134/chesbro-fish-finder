@@ -1,7 +1,9 @@
+<div class="action box">
 <%= link_to "Users Categories", users_categories_path(@user) %>
 <%= link_to "Users Fish", users_fish_path(@user) %>
+</div>
 
-<div class="edit box">
+<div class="action box">
 <% if @user == @current_user %>
   <%= link_to 'Edit', edit_user_path(@user) %>
   <%= link_to 'Destroy', user_path, method: :delete, data: { confirm: 'Are you sure?' } %>
