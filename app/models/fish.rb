@@ -35,15 +35,15 @@ class Fish < ApplicationRecord
   end
   
   def self.newest
-    self.order(created_at: :desc).limit(1)
+    self.order(created_at: :desc).limit(1)[0]
   end
 
   def self.recent
-    self.order(updated_at: :desc).limit(1)
+    self.order(updated_at: :desc).limit(1)[0]
   end
 
   def self.last_solved
-    self.where('category_id == 1').order(updated_at: :desc).limit(1)
+    self.where('category_id == 1').order(updated_at: :desc).limit(1)[0]
   end
 
   def self.slugs_match?(params, model)

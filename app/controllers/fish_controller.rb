@@ -58,14 +58,16 @@ class FishController < ApplicationController
 
   def newest
     @fish = Fish.newest
+    set_user
     render :show
   end
 
   def recent
+    set_user
     @fish = Fish.recent
     render :show
   end
-  
+
   private
     
 
