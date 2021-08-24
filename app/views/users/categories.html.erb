@@ -1,0 +1,3 @@
+<% @user.categories.each do | category | %>
+  <%= link_to category.slug.capitalize, category_path(category.slug) %>
+<% end %>
