@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       scope '/:cat_slug' do
         get '/edit', to: 'fish#edit', as: 'edit_fish'
         get '/', to: 'fish#show', as: 'fish'
-        post '/', to: 'fish#destroy'
+        post '/', to: 'fish#destroy', as: "delete_fish"
         resources :comments
       end
     end
