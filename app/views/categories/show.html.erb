@@ -1,5 +1,7 @@
-<ul>
-  <% @category.fish.each do | one_fish | %>
-    <li><%= link_to one_fish.title, fish_path(one_fish.slug, one_fish.category_slug)%></li>
-  <% end %>
-</ul>
+<div class="category box">
+  <ul>
+    <% @category.fish.each do | one_fish | %>
+      <li><%= link_to one_fish.title, fish_path(one_fish.slug, one_fish.category_slug)%></li>
+    <% end %>
+  </ul> 
+</div>
