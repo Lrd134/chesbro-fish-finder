@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :fish, only: [ :new ]
   scope '/fish' do
+    get '/newest', to: "fish#newest", as: "newest_fish"
+    get '/recent', to: "fish#recent", as: "recent_fish"
     scope '/:fish_slug' do
       scope '/:cat_slug' do
         get '/edit', to: 'fish#edit', as: 'edit_fish'

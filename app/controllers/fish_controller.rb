@@ -5,9 +5,11 @@ class FishController < ApplicationController
   def index
     @fish = Fish.all
   end
+
   def show
     @comment = Comment.new
   end
+
   def new
     set_user
     @fish = Fish.new
@@ -54,6 +56,16 @@ class FishController < ApplicationController
     end
   end
 
+  def newest
+    @fish = Fish.newest
+    render :show
+  end
+
+  def recent
+    @fish = Fish.recent
+    render :show
+  end
+  
   private
     
 
