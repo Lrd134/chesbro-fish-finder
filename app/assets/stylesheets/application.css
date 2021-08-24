@@ -47,4 +47,13 @@
       .action {
         text-align: right;
       }
+      .form {
+        background: royalblue;
+      }
+      .form input {
+        background: yellowgreen;
+      }
+      a {
+        color: paleturquoise
+      }
       
