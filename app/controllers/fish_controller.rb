@@ -59,14 +59,17 @@ class FishController < ApplicationController
 
   def newest
     @fish = Fish.newest
-    set_user
-    render :show
+    redirect_to fish_path(@fish.slug, @fish.category_slug)
   end
 
   def recent
-    set_user
     @fish = Fish.recent
-    render :show
+    redirect_to fish_path(@fish.slug, @fish.category_slug)
+  end
+
+  def solved
+    @fish = Fish.last_solved
+    redirect_to fish_path(@fish.slug, @fish.category_slug)
   end
 
   private
