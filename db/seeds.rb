@@ -11,28 +11,24 @@ end
 users = {
   :larld => {
     username: "larld",
-    password: "ayosafepwhere",
-    admin: 0
+    password: "ayosafepwhere"
   },
   :admin => {
     username: "admin",
-    password: "adminpassword",
-    admin: 1
+    password: "adminpassword"
+   
   },
   :avery => {
     username: "AverySpeaks",
-    password: "speakeasyavery",
-    admin: 0
+    password: "speakeasyavery"
   },
   :kooldude => {
     username: "kooldude132",
-    password: "134koolpass",
-    admin: 0
+    password: "134koolpass"
   },
   :fishpert => {
     username: "FishFindingExpert",
-    password: "expertinfishdontguessme",
-    admin: 1
+    password: "expertinfishdontguessme"
   }
   
 }
