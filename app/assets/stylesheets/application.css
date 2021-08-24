@@ -46,6 +46,7 @@
       }
       .action {
         text-align: right;
+        margin-bottom: 12px;
       }
       .form {
         background: royalblue;
@@ -54,7 +55,8 @@
         background: yellowgreen;
       }
       a {
-        color: paleturquoise
+        color: paleturquoise;
+        text-decoration: none;
       }
       .fish {
         text-align: center;
@@ -62,4 +64,15 @@
       .comment {
         text-align: center;
       }
-      
+      .left {
+        width: 33%;
+        position: relative;
+        top: 3px;
+        left: 156px;
+      }
+      .right {
+        width: 33%;
+        position: relative;
+        bottom: 25px;
+        right: 156px;
+      }
