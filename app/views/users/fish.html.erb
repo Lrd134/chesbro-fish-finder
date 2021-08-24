@@ -1,3 +1,4 @@
+<%= @user.fish.empty? ? "No Posts Yet" : "Fish Created:" %>
 <% @user.fish.each do | fish | %>
   <%= link_to fish.title, fish_path(fish.slug, fish.category_slug) %> <br>
 <% end %>
