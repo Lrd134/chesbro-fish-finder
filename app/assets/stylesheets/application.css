@@ -30,6 +30,7 @@
         padding-left: 10px;
         border: solid 1px black;
         margin: 32px;
+        background:rgb(19, 94, 115)
       }
       body {
         background: rgb(19, 94, 0);
@@ -37,5 +38,10 @@
       .user {
         padding-top: 4px;
         margin-top: 16px;
+        background:rgb(75, 94, 115)
+        
+      }
+      .action {
+        text-align: right;
       }
       
