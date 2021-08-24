@@ -1,25 +1,33 @@
 <%= link_to "Users Categories", users_categories_path(@user) %>
 <%= link_to "Users Fish", users_fish_path(@user) %>
-<div class="user box">
-User: <%= @user.display %>
-<% if @user == @current_user %>
+
 <div class="edit box">
+<% if @user == @current_user %>
   <%= link_to 'Edit', edit_user_path(@user) %>
   <%= link_to 'Destroy', user_path, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
+
+<div class="user box">
+User: <%= @user.display %>
 </div>
-</div><br>
+</div>
+<br>
+
 <div class="fish box">
 <%= @user.fish.empty? ? "No Posts Yet" : "#{@user.display}'s Fish:" %><br>
 <% @user.fish.each do | fish | %>
   <%= link_to fish.title, fish_path(fish.slug, fish.category_slug) %><br>
 <% end %>
-</div><br>
+</div>
+<br>
+
 <div class="comment box">
 <%= @user.comments.empty? ? "No Comments Yet" : "#{@user.display}'s Comments:" %><br>
 <% @user.comments.each do | comment | %>
   <%= link_to "Comment ##{comment.id}", comment_path(comment.fish_slug, comment.category_slug, comment) %> on <%= comment.fish_title %> <br>
 <% end %>
-</div><br>
+</div>
+<br>
+
 <%= link_to 'Back', users_path %>
 
