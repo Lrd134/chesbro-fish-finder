@@ -1,8 +1,9 @@
-<%= @fish.title %><br>
-<% if @user == @fish.user  %>
-  <%= link_to "Edit #{@fish.title}", edit_fish_path(@fish.slug, @fish.category_slug) %><br>
-  <%= link_to "Delete #{@fish.title}", fish_path(@fish.slug, @fish.category_slug), method: :delete, data: { confirm: "Are you sure?"} %><br>
+<div class="action box"><% if @user == @fish.user  %>
+  <%= link_to "Edit #{@fish.title}", edit_fish_path(@fish.slug, @fish.category_slug) %> <%= button_to "Delete #{@fish.title}", delete_fish_path, method: 'post', data: {confirm: "Are you sure you wish to delete #{@fish.title}?"} %>
 <% end %>
+</div>
+<div class="fish box">
+<%= @fish.title %><br>
 <%= @fish.category.name.capitalize%><br>
 <%= @fish.content %><br>
 <%= @fish.fish_image.attached? ? image_tag(@fish.fish_image) : "No Image Provided" %>
@@ -11,3 +12,4 @@
 <% else %>
   <%= "Login to Comment" %>
 <% end %>
+</div>
