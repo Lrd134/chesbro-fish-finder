@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ edit update destroy show username categories fish ]
   before_action :user_exists, only: %i[ create ]
+  before_action :is_user_allowed_to_modify, only: %i[ edit update destroy username ]
   def index
     @users = User.all
   end
@@ -32,30 +33,20 @@ class UsersController < ApplicationController
   end
 
   def edit
-    is_user_allowed_to_modify?(@user) ? render(:edit) : redirect_to(users_path, notice: "You're not allowed to modify this resource.")
   end
 
   def update
-    if is_user_allowed_to_modify?(@user) 
-      @user.update(user_params)
-      if @user.valid?
-        redirect_to user_path(@user)
-      else
-        render :edit
-      end
+    @user.update(user_params)
+    if @user.valid?
+      redirect_to user_path(@user)
     else
-      redirect_to users_path notice: "You're not allowed to modify this resource."
+      render :edit
     end
   end
 
   def destroy
-    if is_user_allowed_to_modify?(@user)
-      @user.fish.each { | fish | fish.destroy }      
-      @user.destroy
-      redirect_to logout_path
-    else
-      redirect_to user_path(@user), notice: "You're not allowed to delete this user."
-    end
+    @user.destroy
+    redirect_to logout_path
   end
 
   def login
@@ -94,11 +85,16 @@ class UsersController < ApplicationController
   end
 
   def username
-    is_user_allowed_to_modify?(@user) ? render(:username, notice: "Username strongly suggested.") : redirect_to(users_path)
+    render :username
   end
 
   def set_user
     @user = User.find_by(id: params[:id])  
   end
   
+  def is_user_allowed_to_modify
+    if @user != current_user
+      redirect_to root_path, notice: "Not allowed to modify that."
+    end
+  end
 end

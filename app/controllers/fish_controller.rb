@@ -1,4 +1,5 @@
 class FishController < ApplicationController
+  before_action :set_fish_by_id, only: [ :update ]
   before_action :set_fish, :set_user, only: %i[ show edit destroy ]
   before_action :check_session_for_user, only: %i[ new create destroy update edit ]
   before_action :is_user_allowed_to_modify, only: %i[ edit update destroy ]
@@ -28,8 +29,6 @@ class FishController < ApplicationController
   end
 
   def update
-    @fish = Fish.find(params[:id])
-    params[:fish][:user_id] = current_user.id
     @fish.update(fish_params)
     if @fish.valid?
       redirect_to fish_path @fish.slug, @fish.category.slug, notice: "Updated fish successfully"
@@ -65,6 +64,10 @@ class FishController < ApplicationController
       @user = current_user
     end
 
+    def set_fish_by_id
+      @fish = Fish.find_by(id: params[:id])
+    end
+    
     def check_session_for_user
       current_user.nil? ? redirect_to(:fish_index, notice: "Not Logged In") : nil
     end
