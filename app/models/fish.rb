@@ -1,5 +1,5 @@
 class Fish < ApplicationRecord
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :category
   belongs_to :user
 

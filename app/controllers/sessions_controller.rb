@@ -8,10 +8,14 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
     end
   end
+
   def login
     @user = User.new
   end
+
   def create
+    # comment button on fish page NO user_id hidden 
+    # field login signup button video
     @user = User.create user_params 
     if @user.valid?
       if @user.authenticate(params['user']['password'])
@@ -24,6 +28,7 @@ class SessionsController < ApplicationController
       render :'users/new'
     end
   end
+
   def destroy
     session.delete :uid
     redirect_to root_path

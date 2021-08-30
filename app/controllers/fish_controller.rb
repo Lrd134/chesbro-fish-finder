@@ -33,6 +33,7 @@ class FishController < ApplicationController
 
   def update
     @fish = Fish.find(params[:id])
+    params[:fish][:user_id] = current_user.id
     if is_user_allowed_to_modify?(@fish)
       @fish.update(fish_params)
       if @fish.valid?
@@ -48,7 +49,6 @@ class FishController < ApplicationController
   
   def destroy
     if is_user_allowed_to_modify?(@fish)
-      @fish.comments.each { | c | c.destroy }
       @fish.destroy
       redirect_to fish_index_path, notice: "Desroyed fish successfully"
     else
