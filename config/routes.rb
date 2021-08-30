@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   get '/:id/fish', to: 'users#fish', as: "users_fish"
   get '/signup', to: 'users#new', as: "new_user"
   post '/users', to: 'users#create'
-  get '/login', to: 'sessions#login', as: 'login'
+  get '/login', to: 'users#login', as: 'login'
+  post '/login', to: 'users#logging_in'
   get '/logout', to: 'sessions#destroy'
   get '/user/username/:id', to: 'users#username', as: 'create_username'
   match '/auth/:provider/callback', to: 'sessions#omniauth', via: [:get, :post]

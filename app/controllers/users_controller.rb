@@ -59,6 +59,20 @@ class UsersController < ApplicationController
   end
 
   def login
+    @user = User.new
+  end
+
+  def logging_in
+    @user = User.find_by(email: params[:user][:email])
+    if @user
+      if @user.authenticate params[:user][:password]
+        session[:uid] = @user.id 
+        redirect_to user_path @user
+      end
+    else
+      @user.errors.add("Invalid Data")
+      render :login
+    end
   end
 
   def categories
