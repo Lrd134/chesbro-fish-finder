@@ -63,6 +63,7 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:user_id, :fish_id, :body)
   end
+  
   def is_user_allowed_to_modify
     if @comment.user_id != current_user.id
       redirect_to root_path, notice: "Not allowed to modify that."
