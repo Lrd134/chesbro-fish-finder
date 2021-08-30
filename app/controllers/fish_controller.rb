@@ -11,12 +11,11 @@ class FishController < ApplicationController
   end
 
   def new
-    set_user
     @fish = Fish.new
   end
   
   def create
-    set_user
+    params[:fish][:user_id] = current_user.id
     @fish = Fish.create(fish_params)
     if @fish.valid?
       redirect_to fish_path(@fish.slug, @fish.category_slug), notice: "Fish created successfully"

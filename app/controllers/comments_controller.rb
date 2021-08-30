@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
 
   def create
     if Fish.slugs_match?(params, 'comment')
+      params[:comment][:user_id] = current_user.id
       @comment = Comment.create(comment_params)
       if @comment.valid?
         redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Comment successfully created."

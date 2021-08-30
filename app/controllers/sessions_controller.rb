@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # comment button on fish page NO user_id hidden 
     # field login signup button video
     @user = User.create user_params 
     if @user.valid?
