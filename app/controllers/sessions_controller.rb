@@ -9,24 +9,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def login
-    @user = User.new
-  end
 
-  def create
-    # field login signup button video
-    @user = User.create user_params 
-    if @user.valid?
-      if @user.authenticate(params['user']['password'])
-        session[:uid] = @user.id
-        @user.username.empty? ? redirect_to(create_username_path(@user)) : redirect_to(user_path(@user))
-      else
-        redirect_to root_path
-      end
-    else
-      render :'users/new'
-    end
-  end
 
   def destroy
     session.delete :uid

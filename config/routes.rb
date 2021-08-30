@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/:id/categories', to: 'users#categories', as: "users_categories"
   get '/:id/fish', to: 'users#fish', as: "users_fish"
   get '/signup', to: 'users#new', as: "new_user"
-  post '/users', to: 'sessions#create'
+  post '/users', to: 'users#create'
   get '/login', to: 'sessions#login', as: 'login'
   get '/logout', to: 'sessions#destroy'
   get '/user/username/:id', to: 'users#username', as: 'create_username'
