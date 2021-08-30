@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [ :update, :show, :edit, :destroy ]
   before_action :set_user, only: %i[ show new ]
   before_action :set_fish, only: %i[ new edit ]
+  before_action :is_user_allowed_to_modify, only: %i[ edit update destroy ]
 
   def index
     @comments = Comment.all
@@ -31,11 +32,7 @@ class CommentsController < ApplicationController
 
   def edit
     if @comment.fish == @fish
-      if is_user_allowed_to_modify?(@comment)
         render :edit
-      else
-        redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "You don't own this resource."
-      end
     else
       redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Error has occured"
     end
@@ -51,12 +48,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if is_user_allowed_to_modify?(@comment)
-      @comment.destroy
-      redirect_to fish_index_path, notice: "Comment removed successfully."
-    else
-      redirect_to fish_path(@comment.fish_slug, @comment.category_slug), notice: "Not allowed to modify this resource."
-    end
+    @comment.destroy
+    redirect_to fish_index_path, notice: "Comment removed successfully."
   end
   
   def set_user
@@ -70,5 +63,10 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:user_id, :fish_id, :body)
   end
-
+  def is_user_allowed_to_modify
+    if @comment.user_id != current_user.id
+      redirect_to root_path, notice: "Not allowed to modify that."
+    end
+  end
+  
 end
